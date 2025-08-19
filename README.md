@@ -5,7 +5,7 @@ Formulas and short reference for the Electroacustics Class.
 Comprehensive study guides and reference materials for electroacoustics engineering, covering fundamental principles through advanced applications in audio systems design and analysis.
 
 ## Live Site
-Visit: https://yourusername.github.io/electroacoustics-reference/
+Visit: https://manolisar.github.io/electroacoustics-reference/
 
 ## Contents
 - Chapter 1: Levels of Electroacoustic Quantities
