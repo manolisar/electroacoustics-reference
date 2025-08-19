@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electroacoustics Chapter 3 - Sound Systems</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .header h2 {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin-top: 25px;
+            font-size: 1.1em;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border: 1px solid #dee2e6;
+        }
+        
+        .reference-table th {
+            background: #f8f9fa;
+            color: #2c3e50;
+            padding: 18px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            border-bottom: 2px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .reference-table th:last-child {
+            border-right: none;
+        }
+        
+        .reference-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f1f3f4;
+            border-right: 1px solid #f1f3f4;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+        
+        .reference-table td:last-child {
+            border-right: none;
+        }
+        
+        .reference-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .reference-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .section-header {
+            background: #e9ecef;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.0em;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .pale-blue { background: #f8f9fa; border-left: 3px solid #007bff; }
+        .pale-green { background: #f8f9fa; border-left: 3px solid #28a745; }
+        .pale-pink { background: #f8f9fa; border-left: 3px solid #e83e8c; }
+        .pale-teal { background: #f8f9fa; border-left: 3px solid #20c997; }
+        .pale-orange { background: #f8f9fa; border-left: 3px solid #fd7e14; }
+        .pale-purple { background: #f8f9fa; border-left: 3px solid #6f42c1; }
+        
+        .equation {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            background: white;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #007bff;
+        }
+        
+        .equation-number {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        
+        .clarified {
+            background: #d1ecf1;
+            border-left: 3px solid #17a2b8;
+            border: 1px solid #bee5eb;
+        }
+        
+        .description {
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .example {
+            color: #28a745;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #28a745;
+        }
+        
+        .technical-note {
+            background: #f8f9fa;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #6c757d;
+            font-size: 0.85em;
+            color: #495057;
+        }
+        
+        .reference-note {
+            background: #fff3cd;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .next-steps {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid #dee2e6;
+            border-left: 4px solid #6c757d;
+        }
+        
+        .next-steps h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .next-steps ol {
+            color: #555;
+            padding-left: 20px;
+        }
+        
+        .next-steps li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .reference-table {
+                font-size: 0.8em;
+            }
+            
+            .reference-table th,
+            .reference-table td {
+                padding: 12px 8px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ELECTROACOUSTICS</h1>
+            <h1>REFERENCE SHEET</h1>
+            <h2>Chapter 3 – Sound Systems and System Integration</h2>
+            <p>Comprehensive reference for system combinations, frequency relationships, and sound system design principles used in audio engineering and acoustical system analysis.</p>
+        </div>
+        
+        <div class="content">
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Section</th>
+                        <th style="width: 20%;">Concept</th>
+                        <th style="width: 30%;">Formula/Rule</th>
+                        <th style="width: 25%;">Explanation/Use Case</th>
+                        <th style="width: 10%;">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- System Combinations -->
+                    <tr class="pale-blue">
+                        <td rowspan="2" class="section-header">
+                            <strong>System Combinations</strong><br>
+                            <small>(Pale Blue)</small>
+                        </td>
+                        <td><strong>Cascaded Systems</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.1)</span>
+                                H_total(f) = H₁(f) × H₂(f) × ... × Hₙ(f)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Cascaded System Properties:</strong><br>
+                                • Systems connected in series (output → input)<br>
+                                • Total gain = product of individual gains<br>
+                                • In dB: L_total = L₁ + L₂ + ... + Lₙ<br>
+                                • Order matters for nonlinear systems
+                            </div>
+                        </td>
+                        <td>Overall transfer function of cascaded (series-connected) systems. Used for amplifier chains, filter cascades, and signal processing chains.</td>
+                        <td class="example">Amp + EQ + Speaker:<br>H_total = H_amp × H_eq × H_spk</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Parallel Systems</strong></td>
+                        <td>
+                            <div class="equation warning">
+                                <span class="equation-number">(3.2)</span>
+                                H_total(f) = (Σ Hᵢ(f)) / n
+                            </div>
+                            <div class="equation clarified">
+                                <strong>Context-Dependent:</strong><br>
+                                • <strong>Measurement averaging:</strong> (Σ Hᵢ)/n<br>
+                                • <strong>Parallel speakers:</strong> Complex vector addition<br>
+                                • <strong>Power combination:</strong> P_total = Σ Pᵢ
+                            </div>
+                            <div class="technical-note">
+                                <strong>Parallel System Types:</strong><br>
+                                • <strong>Measurement averaging:</strong> Multiple measurements of same system<br>
+                                • <strong>Loudspeaker arrays:</strong> Coherent or incoherent combination<br>
+                                • <strong>Parallel amplifiers:</strong> Load sharing configuration<br>
+                                • <strong>Multi-way systems:</strong> Frequency-divided parallel paths
+                            </div>
+                        </td>
+                        <td>Response of parallel systems depends on application context. Can be arithmetic averaging, power addition, or complex vector combination.</td>
+                        <td class="example">Multi-way speaker:<br>Woofer || Tweeter<br>(frequency divided)</td>
+                    </tr>
+
+                    <!-- Frequency Relationships -->
+                    <tr class="pale-green">
+                        <td rowspan="2" class="section-header">
+                            <strong>Frequency Relationships</strong><br>
+                            <small>(Pale Green)</small>
+                        </td>
+                        <td><strong>Octave Frequency</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.3)</span>
+                                f_octave = f₀ × 2ⁿ
+                            </div>
+                            <div class="technical-note">
+                                <strong>Octave Properties:</strong><br>
+                                • n > 0: frequencies above f₀<br>
+                                • n < 0: frequencies below f₀<br>
+                                • Each octave doubles/halves frequency<br>
+                                • Common in audio: 31Hz, 63Hz, 125Hz, 250Hz...
+                            </div>
+                        </td>
+                        <td>Logarithmic frequency relationship where each octave represents a doubling of frequency. Fundamental to audio analysis and filter design.</td>
+                        <td class="example">1kHz → 2kHz<br>(+1 octave)<br>1kHz → 500Hz<br>(-1 octave)</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Bandwidth Definition</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.4)</span>
+                                Δf = f₂ - f₁
+                            </div>
+                            <div class="technical-note">
+                                <strong>Bandwidth Types:</strong><br>
+                                • <strong>-3dB bandwidth:</strong> Between -3dB points<br>
+                                • <strong>-10dB bandwidth:</strong> Wider measurement<br>
+                                • <strong>Fractional octave:</strong> 1/3, 1/6, 1/12 octave bands<br>
+                                • <strong>Noise bandwidth:</strong> Equivalent rectangular bandwidth
+                            </div>
+                        </td>
+                        <td>Simple bandwidth calculation between two cutoff frequencies. Essential for filter analysis and system specifications.</td>
+                        <td class="example">800Hz to 1.2kHz<br>= 400Hz bandwidth</td>
+                    </tr>
+
+                    <!-- System Characteristics -->
+                    <tr class="pale-pink">
+                        <td rowspan="2" class="section-header">
+                            <strong>System Characteristics</strong><br>
+                            <small>(Pale Pink)</small>
+                        </td>
+                        <td><strong>Quality Factor</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.5)</span>
+                                Q = f₀ / Δf
+                            </div>
+                            <div class="technical-note">
+                                <strong>Q Factor Applications:</strong><br>
+                                • <strong>High Q (>10):</strong> Sharp, selective filters<br>
+                                • <strong>Medium Q (1-10):</strong> Audio equalizers<br>
+                                • <strong>Low Q (<1):</strong> Broad, gentle filters<br>
+                                • <strong>Resonant systems:</strong> Speaker enclosures, rooms
+                            </div>
+                        </td>
+                        <td>Measure of resonance sharpness and filter selectivity. Higher Q indicates narrower bandwidth relative to center frequency.</td>
+                        <td class="example">f₀=1kHz, BW=100Hz<br>Q = 10<br>(narrow band)</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Combined Power Levels</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.6)</span>
+                                L_total = 10 log₁₀(Σ Pᵢ / P_ref)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Power Combination Rules:</strong><br>
+                                • <strong>Incoherent sources:</strong> Powers add directly<br>
+                                • <strong>Coherent sources:</strong> Voltages add, then square<br>
+                                • <strong>Reference power:</strong> Often 1W or 1mW<br>
+                                • <strong>Multiple speakers:</strong> Usually incoherent
+                            </div>
+                        </td>
+                        <td>Total sound level from multiple incoherent power sources. Used for calculating combined output from multiple speakers or amplifiers.</td>
+                        <td class="example">Two 10W sources:<br>L = 10log₁₀(20/1)<br>= 13.01 dB(W)</td>
+                    </tr>
+
+                    <!-- Advanced System Concepts -->
+                    <tr class="pale-teal">
+                        <td rowspan="3" class="section-header">
+                            <strong>Advanced Concepts</strong><br>
+                            <small>(Pale Teal)</small>
+                        </td>
+                        <td><strong>Fractional Octave Bands</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.7)</span>
+                                f_upper/f_lower = 2^(1/n)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Standard Fractional Octaves:</strong><br>
+                                • <strong>1/3 octave:</strong> f₂/f₁ = 2^(1/3) ≈ 1.26<br>
+                                • <strong>1/6 octave:</strong> f₂/f₁ = 2^(1/6) ≈ 1.12<br>
+                                • <strong>1/12 octave:</strong> f₂/f₁ = 2^(1/12) ≈ 1.06<br>
+                                • Used in spectrum analyzers and EQ design
+                            </div>
+                        </td>
+                        <td>Frequency ratio for fractional octave band analysis. Essential for acoustic measurements and graphic equalizer design.</td>
+                        <td class="example">1/3 octave:<br>1kHz band<br>891Hz-1122Hz</td>
+                    </tr>
+                    <tr class="pale-teal">
+                        <td><strong>System Delay</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.8)</span>
+                                τ = d/c = d/343 (m/s at 20°C)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Delay Considerations:</strong><br>
+                                • <strong>Speed of sound:</strong> ~343 m/s at 20°C<br>
+                                • <strong>Temperature dependent:</strong> +0.6 m/s per °C<br>
+                                • <strong>Time alignment:</strong> Critical for multiple speakers<br>
+                                • <strong>Phase alignment:</strong> Affects frequency response
+                            </div>
+                        </td>
+                        <td>Acoustic delay between source and receiver. Critical for speaker alignment and sound system timing in large venues.</td>
+                        <td class="example">10m distance:<br>τ = 29.2 ms<br>@20°C</td>
+                    </tr>
+                    <tr class="pale-teal">
+                        <td><strong>Coherence Function</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.9)</span>
+                                γ²(f) = |G_xy(f)|² / [G_xx(f)G_yy(f)]
+                            </div>
+                            <div class="technical-note">
+                                <strong>Coherence Applications:</strong><br>
+                                • <strong>γ² = 1:</strong> Perfect linear relationship<br>
+                                • <strong>γ² = 0:</strong> No linear relationship<br>
+                                • <strong>System identification:</strong> Input-output correlation<br>
+                                • <strong>Noise floor:</strong> Measurement quality indicator
+                            </div>
+                        </td>
+                        <td>Measure of linear relationship between two signals. Used to assess measurement quality and system linearity.</td>
+                        <td class="example">Good measurement:<br>γ² > 0.9<br>across frequency</td>
+                    </tr>
+
+                    <!-- Practical Design -->
+                    <tr class="pale-orange">
+                        <td rowspan="2" class="section-header">
+                            <strong>Practical Design</strong><br>
+                            <small>(Pale Orange)</small>
+                        </td>
+                        <td><strong>Array Gain</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.10)</span>
+                                G_array = 10 log₁₀(N) (incoherent)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Array Configurations:</strong><br>
+                                • <strong>Incoherent:</strong> G = 10log₁₀(N) dB<br>
+                                • <strong>Coherent:</strong> G = 20log₁₀(N) dB<br>
+                                • <strong>Line arrays:</strong> Directional control<br>
+                                • <strong>Point source arrays:</strong> Coverage extension
+                            </div>
+                        </td>
+                        <td>Gain from combining multiple identical sources. Depends on coherence between sources and frequency relationships.</td>
+                        <td class="example">4 speakers incoherent:<br>G = 6.02 dB<br>4 speakers coherent:<br>G = 12.04 dB</td>
+                    </tr>
+                    <tr class="pale-orange">
+                        <td><strong>Coverage Angle</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(3.11)</span>
+                                θ = 2 × arcsin(λ/2L)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Coverage Design:</strong><br>
+                                • <strong>λ:</strong> Wavelength at frequency of interest<br>
+                                • <strong>L:</strong> Length of line array<br>
+                                • <strong>Higher frequency:</strong> Narrower coverage<br>
+                                • <strong>Longer array:</strong> Narrower coverage
+                            </div>
+                        </td>
+                        <td>Coverage angle for line array systems. Determines directional characteristics and audience coverage patterns.</td>
+                        <td class="example">2m array @ 1kHz:<br>θ ≈ 20°<br>(narrow beam)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="reference-note">
+                <h3>🔧 System Design Guidelines & Quick Reference</h3>
+                <p><strong>Common System Configurations:</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li><strong>Cascaded:</strong> Amplifier → EQ → Crossover → Speakers (gains multiply)</li>
+                    <li><strong>Parallel:</strong> Multi-way speakers, speaker arrays, redundant systems</li>
+                    <li><strong>Hybrid:</strong> Matrix systems, distributed arrays, zoned systems</li>
+                </ul>
+                <p><strong>Typical Values:</strong> Q-factors: 0.7-10 | Octave bands: 31Hz-16kHz | Array gains: 3-12dB | Delay: ~3ms/meter</p>
+            </div>
+
+            <div class="next-steps">
+                <h3>🎯 System Design & Analysis Guidelines</h3>
+                <ol>
+                    <li><strong>System Architecture:</strong> Understand cascaded vs. parallel system behavior and when to use each</li>
+                    <li><strong>Frequency Analysis:</strong> Master octave relationships and fractional octave band calculations</li>
+                    <li><strong>Quality Assessment:</strong> Use Q-factor and coherence measurements for system evaluation</li>
+                    <li><strong>Array Design:</strong> Apply array gain principles for coverage and SPL requirements</li>
+                    <li><strong>Time Alignment:</strong> Account for acoustic delays in multi-speaker systems</li>
+                    <li><strong>Measurement Techniques:</strong> Use appropriate averaging and analysis methods for different system types</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

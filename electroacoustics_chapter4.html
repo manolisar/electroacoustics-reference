@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electroacoustics Chapter 4 - Electrical, Mechanical & Acoustic Analogies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .header h2 {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin-top: 25px;
+            font-size: 1.1em;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border: 1px solid #dee2e6;
+        }
+        
+        .reference-table th {
+            background: #f8f9fa;
+            color: #2c3e50;
+            padding: 18px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            border-bottom: 2px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .reference-table th:last-child {
+            border-right: none;
+        }
+        
+        .reference-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f1f3f4;
+            border-right: 1px solid #f1f3f4;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+        
+        .reference-table td:last-child {
+            border-right: none;
+        }
+        
+        .reference-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .reference-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .section-header {
+            background: #e9ecef;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.0em;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .pale-blue { background: #f8f9fa; border-left: 3px solid #007bff; }
+        .pale-green { background: #f8f9fa; border-left: 3px solid #28a745; }
+        .pale-pink { background: #f8f9fa; border-left: 3px solid #e83e8c; }
+        .pale-teal { background: #f8f9fa; border-left: 3px solid #20c997; }
+        .pale-orange { background: #f8f9fa; border-left: 3px solid #fd7e14; }
+        .pale-purple { background: #f8f9fa; border-left: 3px solid #6f42c1; }
+        
+        .equation {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            background: white;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #007bff;
+        }
+        
+        .equation-number {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .analogy-table {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #6f42c1;
+            font-size: 0.85em;
+        }
+        
+        .description {
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .example {
+            color: #28a745;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #28a745;
+        }
+        
+        .technical-note {
+            background: #f8f9fa;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #6c757d;
+            font-size: 0.85em;
+            color: #495057;
+        }
+        
+        .reference-note {
+            background: #fff3cd;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .next-steps {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid #dee2e6;
+            border-left: 4px solid #6c757d;
+        }
+        
+        .next-steps h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .next-steps ol {
+            color: #555;
+            padding-left: 20px;
+        }
+        
+        .next-steps li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .analogy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #dee2e6;
+            margin: 15px 0;
+            border: 1px solid #dee2e6;
+        }
+        
+        .analogy-cell {
+            background: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .analogy-header {
+            background: #e9ecef;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .reference-table {
+                font-size: 0.8em;
+            }
+            
+            .reference-table th,
+            .reference-table td {
+                padding: 12px 8px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .analogy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ELECTROACOUSTICS</h1>
+            <h1>REFERENCE SHEET</h1>
+            <h2>Chapter 4 – Electrical, Mechanical & Acoustic Analogies</h2>
+            <p>Comprehensive reference for analogous relationships between electrical, mechanical, and acoustic systems, enabling unified analysis and design approaches across domains.</p>
+        </div>
+        
+        <div class="content">
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Section</th>
+                        <th style="width: 20%;">Concept</th>
+                        <th style="width: 30%;">Formula/Rule</th>
+                        <th style="width: 25%;">Explanation/Use Case</th>
+                        <th style="width: 10%;">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Electrical Domain -->
+                    <tr class="pale-blue">
+                        <td rowspan="4" class="section-header">
+                            <strong>Electrical Domain</strong><br>
+                            <small>(Pale Blue)</small>
+                        </td>
+                        <td><strong>Resistive Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.1)</span>
+                                Z_R = R
+                            </div>
+                            <div class="technical-note">
+                                <strong>Resistance Properties:</strong><br>
+                                • Frequency independent<br>
+                                • Energy dissipation (heat)<br>
+                                • In-phase voltage/current<br>
+                                • Real impedance component
+                            </div>
+                        </td>
+                        <td>Pure resistance shows no frequency dependence. Fundamental electrical element for energy dissipation.</td>
+                        <td class="example">8Ω speaker<br>1kΩ resistor</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Inductive Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.2)</span>
+                                Z_L = jωL
+                            </div>
+                            <div class="technical-note">
+                                <strong>Inductance Properties:</strong><br>
+                                • Frequency dependent: |Z_L| = ωL<br>
+                                • Energy storage (magnetic field)<br>
+                                • Voltage leads current by 90°<br>
+                                • Opposes current changes
+                            </div>
+                        </td>
+                        <td>Inductive reactance increases with frequency. Models magnetic energy storage and current opposition.</td>
+                        <td class="example">1mH @ 1kHz:<br>|Z_L| = 6.28Ω</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Capacitive Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.3)</span>
+                                Z_C = 1/(jωC)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Capacitance Properties:</strong><br>
+                                • Frequency dependent: |Z_C| = 1/(ωC)<br>
+                                • Energy storage (electric field)<br>
+                                • Current leads voltage by 90°<br>
+                                • Opposes voltage changes
+                            </div>
+                        </td>
+                        <td>Capacitive reactance decreases with frequency. Models electric energy storage and voltage opposition.</td>
+                        <td class="example">100µF @ 1kHz:<br>|Z_C| = 1.59Ω</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Ohm's Law</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.1a)</span>
+                                V = I × Z
+                            </div>
+                            <div class="analogy-table">
+                                <strong>Electrical Domain Variables:</strong><br>
+                                • <strong>Across variable:</strong> Voltage (V)<br>
+                                • <strong>Through variable:</strong> Current (I)<br>
+                                • <strong>Impedance:</strong> Z = V/I
+                            </div>
+                        </td>
+                        <td>Fundamental relationship between voltage, current, and impedance. Basis for all electrical analogies.</td>
+                        <td class="example">12V / 8Ω<br>= 1.5A</td>
+                    </tr>
+
+                    <!-- Mechanical Domain -->
+                    <tr class="pale-green">
+                        <td rowspan="5" class="section-header">
+                            <strong>Mechanical Domain</strong><br>
+                            <small>(Pale Green)</small>
+                        </td>
+                        <td><strong>Newton's Second Law</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.4)</span>
+                                F = M × a = M × (dv/dt)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Mass Properties:</strong><br>
+                                • Analogous to electrical inductance<br>
+                                • Opposes acceleration (velocity changes)<br>
+                                • Energy storage (kinetic energy)<br>
+                                • Z_mass = jωM
+                            </div>
+                        </td>
+                        <td>Force required to accelerate mass. Mechanical analogy to inductance - opposes velocity changes.</td>
+                        <td class="example">0.1kg mass<br>10m/s² accel<br>F = 1N</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Velocity Definition</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.5)</span>
+                                v = dx/dt
+                            </div>
+                            <div class="analogy-table">
+                                <strong>Mechanical Velocity Analogy:</strong><br>
+                                • <strong>Electrical:</strong> Current (I) - charge flow rate<br>
+                                • <strong>Mechanical:</strong> Velocity (v) - displacement rate<br>
+                                • Both are "through" variables
+                            </div>
+                        </td>
+                        <td>Rate of displacement change. Mechanical through variable analogous to electrical current.</td>
+                        <td class="example">10mm/s<br>= 0.01 m/s</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Spring Compliance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.5a)</span>
+                                F = x/K    or    Z_spring = 1/(jωK)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Compliance Properties:</strong><br>
+                                • Analogous to electrical capacitance<br>
+                                • K = compliance (m/N)<br>
+                                • Opposes displacement<br>
+                                • Energy storage (potential energy)
+                            </div>
+                        </td>
+                        <td>Spring compliance relates force to displacement. Mechanical analogy to capacitance.</td>
+                        <td class="example">Stiff spring:<br>low K<br>Soft spring:<br>high K</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Mechanical Resistance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.5b)</span>
+                                F = R_mech × v
+                            </div>
+                            <div class="technical-note">
+                                <strong>Mechanical Resistance:</strong><br>
+                                • Analogous to electrical resistance<br>
+                                • Energy dissipation (friction, damping)<br>
+                                • Frequency independent<br>
+                                • Opposes motion
+                            </div>
+                        </td>
+                        <td>Mechanical damping or friction. Direct analogy to electrical resistance with energy dissipation.</td>
+                        <td class="example">Viscous damping<br>Air resistance<br>Friction</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Mechanical Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.5c)</span>
+                                Z_mech = F/v
+                            </div>
+                            <div class="analogy-table">
+                                <strong>Mechanical Domain Variables:</strong><br>
+                                • <strong>Across variable:</strong> Force (F)<br>
+                                • <strong>Through variable:</strong> Velocity (v)<br>
+                                • <strong>Impedance:</strong> Z_mech = F/v
+                            </div>
+                        </td>
+                        <td>Ratio of force to velocity. Mechanical impedance analogous to electrical impedance.</td>
+                        <td class="example">High Z: hard to move<br>Low Z: easy to move</td>
+                    </tr>
+
+                    <!-- Acoustic Domain -->
+                    <tr class="pale-pink">
+                        <td rowspan="4" class="section-header">
+                            <strong>Acoustic Domain</strong><br>
+                            <small>(Pale Pink)</small>
+                        </td>
+                        <td><strong>Pressure Definition</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.6)</span>
+                                p = F/A
+                            </div>
+                            <div class="analogy-table">
+                                <strong>Acoustic Pressure Analogy:</strong><br>
+                                • <strong>Electrical:</strong> Voltage (V) - potential difference<br>
+                                • <strong>Mechanical:</strong> Force (F) - mechanical effort<br>
+                                • <strong>Acoustic:</strong> Pressure (p) - acoustic potential
+                            </div>
+                        </td>
+                        <td>Force per unit area. Acoustic across variable analogous to electrical voltage and mechanical force.</td>
+                        <td class="example">10N over 0.01m²<br>= 1000 Pa</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Volume Velocity</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.7)</span>
+                                U = v × A
+                            </div>
+                            <div class="analogy-table">
+                                <strong>Volume Velocity Analogy:</strong><br>
+                                • <strong>Electrical:</strong> Current (I) - charge flow<br>
+                                • <strong>Mechanical:</strong> Velocity (v) - motion rate<br>
+                                • <strong>Acoustic:</strong> Volume velocity (U) - volume flow rate
+                            </div>
+                        </td>
+                        <td>Volume flow rate through acoustic system. Acoustic through variable analogous to current and velocity.</td>
+                        <td class="example">1mm/s × 0.01m²<br>= 10mm³/s</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Acoustic Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.8)</span>
+                                Z_acoustic = p/U
+                            </div>
+                            <div class="technical-note">
+                                <strong>Acoustic Impedance Types:</strong><br>
+                                • <strong>Specific:</strong> Z_s = p/v (Pa·s/m)<br>
+                                • <strong>Mechanical:</strong> Z_a = p/U (Pa·s/m³)<br>
+                                • <strong>Characteristic:</strong> Z₀ = ρc (air ≈ 415 rayls)<br>
+                                • Frequency dependent for reactive elements
+                            </div>
+                        </td>
+                        <td>Ratio of acoustic pressure to volume velocity. Fundamental acoustic impedance definition.</td>
+                        <td class="example">Air: Z₀ ≈ 415<br>Water: Z₀ ≈ 1.5×10⁶<br>(rayls)</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Acoustic Elements</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.8a)</span>
+                                Z_mass = jωM_a,  Z_comp = 1/(jωC_a),  Z_resist = R_a
+                            </div>
+                            <div class="technical-note">
+                                <strong>Acoustic Element Analogies:</strong><br>
+                                • <strong>Mass:</strong> M_a = ρL/A (air column)<br>
+                                • <strong>Compliance:</strong> C_a = V/(ρc²) (cavity)<br>
+                                • <strong>Resistance:</strong> R_a (friction, radiation)<br>
+                                • Same impedance forms as electrical
+                            </div>
+                        </td>
+                        <td>Acoustic mass, compliance, and resistance follow same impedance relationships as electrical elements.</td>
+                        <td class="example">Port: acoustic mass<br>Cavity: compliance<br>Damping: resistance</td>
+                    </tr>
+
+                    <!-- Helmholtz Resonator -->
+                    <tr class="pale-teal">
+                        <td rowspan="2" class="section-header">
+                            <strong>Resonant Systems</strong><br>
+                            <small>(Pale Teal)</small>
+                        </td>
+                        <td><strong>Helmholtz Resonator</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.9)</span>
+                                f_H = (c/2π) × √[S/(V×L)]
+                            </div>
+                            <div class="technical-note">
+                                <strong>Helmholtz Parameters:</strong><br>
+                                • <strong>c:</strong> Speed of sound (343 m/s @ 20°C)<br>
+                                • <strong>S:</strong> Neck cross-sectional area<br>
+                                • <strong>V:</strong> Cavity volume<br>
+                                • <strong>L:</strong> Effective neck length (L + ΔL)<br>
+                                • <strong>ΔL ≈ 0.85√(S/π):</strong> End correction
+                            </div>
+                        </td>
+                        <td>Resonant frequency of cavity with neck opening. Acoustic LC resonator with mass (neck) and compliance (cavity).</td>
+                        <td class="example">1cm² neck<br>1L volume<br>1cm length<br>≈ 546 Hz</td>
+                    </tr>
+                    <tr class="pale-teal">
+                        <td><strong>Resonance Condition</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.9a)</span>
+                                ω₀ = 1/√(LC) = √(1/(M_a×C_a))
+                            </div>
+                            <div class="technical-note">
+                                <strong>Universal Resonance:</strong><br>
+                                • <strong>Electrical:</strong> ω₀ = 1/√(LC)<br>
+                                • <strong>Mechanical:</strong> ω₀ = √(1/(MK))<br>
+                                • <strong>Acoustic:</strong> ω₀ = √(1/(M_a C_a))<br>
+                                • All domains follow same mathematical form
+                            </div>
+                        </td>
+                        <td>Universal resonance condition across all three domains. Inertial and compliance elements determine resonant frequency.</td>
+                        <td class="example">Minimum impedance<br>Maximum response<br>at resonance</td>
+                    </tr>
+
+                    <!-- Analogy Summary -->
+                    <tr class="pale-orange">
+                        <td rowspan="2" class="section-header">
+                            <strong>Analogy Summary</strong><br>
+                            <small>(Pale Orange)</small>
+                        </td>
+                        <td><strong>Variable Analogies</strong></td>
+                        <td>
+                            <div class="analogy-grid">
+                                <div class="analogy-cell analogy-header">Domain</div>
+                                <div class="analogy-cell analogy-header">Across Variable</div>
+                                <div class="analogy-cell analogy-header">Through Variable</div>
+                                <div class="analogy-cell"><strong>Electrical</strong></div>
+                                <div class="analogy-cell">Voltage (V)</div>
+                                <div class="analogy-cell">Current (I)</div>
+                                <div class="analogy-cell"><strong>Mechanical</strong></div>
+                                <div class="analogy-cell">Force (F)</div>
+                                <div class="analogy-cell">Velocity (v)</div>
+                                <div class="analogy-cell"><strong>Acoustic</strong></div>
+                                <div class="analogy-cell">Pressure (p)</div>
+                                <div class="analogy-cell">Volume Velocity (U)</div>
+                            </div>
+                        </td>
+                        <td>Systematic analogies between electrical, mechanical, and acoustic domains. Enables unified analysis methods.</td>
+                        <td class="example">Same math,<br>different physics</td>
+                    </tr>
+                    <tr class="pale-orange">
+                        <td><strong>Element Analogies</strong></td>
+                        <td>
+                            <div class="analogy-grid">
+                                <div class="analogy-cell analogy-header">Element</div>
+                                <div class="analogy-cell analogy-header">Electrical</div>
+                                <div class="analogy-cell analogy-header">Mechanical</div>
+                                <div class="analogy-cell analogy-header">Acoustic</div>
+                                <div class="analogy-cell"><strong>Resistance</strong></div>
+                                <div class="analogy-cell">R (Ω)</div>
+                                <div class="analogy-cell">R_mech (N·s/m)</div>
+                                <div class="analogy-cell">R_a (Pa·s/m³)</div>
+                                <div class="analogy-cell"><strong>Inductance</strong></div>
+                                <div class="analogy-cell">L (H)</div>
+                                <div class="analogy-cell">M (kg)</div>
+                                <div class="analogy-cell">M_a (kg/m⁴)</div>
+                                <div class="analogy-cell"><strong>Capacitance</strong></div>
+                                <div class="analogy-cell">C (F)</div>
+                                <div class="analogy-cell">K (m/N)</div>
+                                <div class="analogy-cell">C_a (m⁵/N)</div>
+                            </div>
+                        </td>
+                        <td>Direct analogies between circuit elements and physical components. Same impedance mathematics apply across domains.</td>
+                        <td class="example">RLC circuit ↔<br>Mass-spring-damper ↔<br>Helmholtz resonator</td>
+                    </tr>
+
+                    <!-- Conversion Factors -->
+                    <tr class="pale-purple">
+                        <td rowspan="3" class="section-header">
+                            <strong>Conversion Factors</strong><br>
+                            <small>(Pale Purple)</small>
+                        </td>
+                        <td><strong>Acoustic Mass</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.10)</span>
+                                M_a = ρL/A
+                            </div>
+                            <div class="technical-note">
+                                <strong>Acoustic Mass Applications:</strong><br>
+                                • <strong>Air columns:</strong> Speaker ports, tubes<br>
+                                • <strong>ρ:</strong> Air density (1.21 kg/m³ @ 20°C)<br>
+                                • <strong>L:</strong> Effective length (includes end corrections)<br>
+                                • <strong>A:</strong> Cross-sectional area
+                            </div>
+                        </td>
+                        <td>Acoustic mass of air column in tube or port. Represents inertia of oscillating air mass.</td>
+                        <td class="example">5cm port<br>1cm² area:<br>M_a = 6.05×10⁻⁵ kg/m⁴</td>
+                    </tr>
+                    <tr class="pale-purple">
+                        <td><strong>Acoustic Compliance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.11)</span>
+                                C_a = V/(ρc²)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Acoustic Compliance Applications:</strong><br>
+                                • <strong>Cavities:</strong> Speaker enclosures, rooms<br>
+                                • <strong>V:</strong> Volume of air space<br>
+                                • <strong>ρc²:</strong> Bulk modulus of air (≈ 1.42×10⁵ Pa)<br>
+                                • Represents air "springiness"
+                            </div>
+                        </td>
+                        <td>Acoustic compliance of enclosed air volume. Represents compressibility of trapped air.</td>
+                        <td class="example">1L enclosure:<br>C_a = 7.04×10⁻⁹ m⁵/N</td>
+                    </tr>
+                    <tr class="pale-purple">
+                        <td><strong>Radiation Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(4.12)</span>
+                                Z_rad = ρc/A × [R₁(ka) + jX₁(ka)]
+                            </div>
+                            <div class="technical-note">
+                                <strong>Radiation Impedance:</strong><br>
+                                • <strong>ka:</strong> Wavenumber × radius<br>
+                                • <strong>R₁, X₁:</strong> Radiation resistance and reactance functions<br>
+                                • <strong>Low frequency:</strong> Z_rad ≈ jωρc(ka)²/2<br>
+                                • <strong>High frequency:</strong> Z_rad ≈ ρc
+                            </div>
+                        </td>
+                        <td>Impedance seen by vibrating surface radiating into free space. Frequency-dependent load on acoustic sources.</td>
+                        <td class="example">Large piston:<br>Z_rad → ρc<br>Small piston:<br>Z_rad → jωM_rad</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="reference-note">
+                <h3>🔧 Analogy Applications & Design Guidelines</h3>
+                <p><strong>Common Applications:</strong></p>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li><strong>Speaker Design:</strong> Thiele-Small parameters use electrical analogies for mechanical/acoustic elements</li>
+                    <li><strong>Room Acoustics:</strong> Model rooms as acoustic networks with mass, compliance, and resistance</li>
+                    <li><strong>Filter Design:</strong> Translate electrical filter theory to mechanical and acoustic systems</li>
+                    <li><strong>Transducer Analysis:</strong> Unified models spanning electrical input to acoustic output</li>
+                </ul>
+                <p><strong>Key Constants:</strong> Air density ρ = 1.21 kg/m³ | Speed of sound c = 343 m/s | Characteristic impedance Z₀ = ρc ≈ 415 rayls (@ 20°C)</p>
+            </div>
+
+            <div class="next-steps">
+                <h3>🎯 Mastering Analogies for System Design</h3>
+                <ol>
+                    <li><strong>Understand Domain Variables:</strong> Master the across/through variable concepts in each domain</li>
+                    <li><strong>Apply Impedance Concepts:</strong> Use Z = (across variable)/(through variable) consistently</li>
+                    <li><strong>Practice Conversions:</strong> Convert between electrical circuits and mechanical/acoustic systems</li>
+                    <li><strong>Design with Analogies:</strong> Use electrical design techniques for acoustic and mechanical systems</li>
+                    <li><strong>Analyze Resonance:</strong> Apply LC resonance concepts to mechanical and acoustic resonators</li>
+                    <li><strong>Model Complete Systems:</strong> Build unified models spanning multiple physical domains</li>
+                    <li><strong>Validate with Measurements:</strong> Verify analogy predictions with real system measurements</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

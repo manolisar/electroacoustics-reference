@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electroacoustics Chapter 6 - Loudspeakers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        
+        .header h2 {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin-top: 25px;
+            font-size: 1.1em;
+            opacity: 0.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border: 1px solid #dee2e6;
+        }
+        
+        .reference-table th {
+            background: #f8f9fa;
+            color: #2c3e50;
+            padding: 18px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            border-bottom: 2px solid #dee2e6;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .reference-table th:last-child {
+            border-right: none;
+        }
+        
+        .reference-table td {
+            padding: 16px;
+            border-bottom: 1px solid #f1f3f4;
+            border-right: 1px solid #f1f3f4;
+            vertical-align: top;
+            font-size: 0.9em;
+        }
+        
+        .reference-table td:last-child {
+            border-right: none;
+        }
+        
+        .reference-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .reference-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .section-header {
+            background: #e9ecef;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.0em;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .pale-blue { background: #f8f9fa; border-left: 3px solid #007bff; }
+        .pale-green { background: #f8f9fa; border-left: 3px solid #28a745; }
+        .pale-pink { background: #f8f9fa; border-left: 3px solid #e83e8c; }
+        .pale-teal { background: #f8f9fa; border-left: 3px solid #20c997; }
+        .pale-orange { background: #f8f9fa; border-left: 3px solid #fd7e14; }
+        .pale-purple { background: #f8f9fa; border-left: 3px solid #6f42c1; }
+        .pale-red { background: #f8f9fa; border-left: 3px solid #dc3545; }
+        
+        .equation {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            background: white;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #007bff;
+        }
+        
+        .equation-number {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .description {
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        .example {
+            color: #28a745;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #28a745;
+        }
+        
+        .technical-note {
+            background: #f8f9fa;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #dee2e6;
+            border-left: 3px solid #6c757d;
+            font-size: 0.85em;
+            color: #495057;
+        }
+        
+        .ts-parameter {
+            background: #e8f4f8;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #bee5eb;
+            border-left: 3px solid #17a2b8;
+            font-size: 0.85em;
+        }
+        
+        .reference-note {
+            background: #fff3cd;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #ffeaa7;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .next-steps {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 40px;
+            border: 1px solid #dee2e6;
+            border-left: 4px solid #6c757d;
+        }
+        
+        .next-steps h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .next-steps ol {
+            color: #555;
+            padding-left: 20px;
+        }
+        
+        .next-steps li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .reference-table {
+                font-size: 0.8em;
+            }
+            
+            .reference-table th,
+            .reference-table td {
+                padding: 12px 8px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ELECTROACOUSTICS</h1>
+            <h1>REFERENCE SHEET</h1>
+            <h2>Chapter 6 – Loudspeakers and Electroacoustic Transduction</h2>
+            <p>Comprehensive reference for loudspeaker design, analysis, and performance covering electromagnetic transduction, mechanical systems, acoustic radiation, and enclosure design.</p>
+        </div>
+        
+        <div class="content">
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Section</th>
+                        <th style="width: 20%;">Concept</th>
+                        <th style="width: 30%;">Formula/Rule</th>
+                        <th style="width: 25%;">Explanation/Use Case</th>
+                        <th style="width: 10%;">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Electromagnetic Transduction -->
+                    <tr class="pale-blue">
+                        <td rowspan="3" class="section-header">
+                            <strong>Electromagnetic Transduction</strong><br>
+                            <small>(Pale Blue)</small>
+                        </td>
+                        <td><strong>Lorentz Force</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.1)</span>
+                                F = B × l × i
+                            </div>
+                            <div class="technical-note">
+                                <strong>Voice Coil Parameters:</strong><br>
+                                • <strong>B:</strong> Magnetic flux density in gap (0.5-2.0 T)<br>
+                                • <strong>l:</strong> Effective conductor length (1-5 cm)<br>
+                                • <strong>i:</strong> Instantaneous current<br>
+                                • <strong>Bl:</strong> Force factor (motor strength)
+                            </div>
+                        </td>
+                        <td>Force generated by current-carrying conductor in magnetic field. Fundamental electromagnetic-to-mechanical conversion in loudspeakers.</td>
+                        <td class="example">B=1T, l=2cm<br>i=1A → F=0.02N</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Back EMF</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.1a)</span>
+                                e = B × l × v
+                            </div>
+                            <div class="technical-note">
+                                <strong>Electromagnetic Coupling:</strong><br>
+                                • <strong>e:</strong> Induced voltage (back EMF)<br>
+                                • <strong>v:</strong> Diaphragm velocity<br>
+                                • Same Bl factor for both directions<br>
+                                • Limits maximum SPL and damping
+                            </div>
+                        </td>
+                        <td>Voltage induced by moving conductor in magnetic field. Provides electromagnetic damping and couples mechanical motion to electrical circuit.</td>
+                        <td class="example">Moving coil acts<br>as generator<br>(damping effect)</td>
+                    </tr>
+                    <tr class="pale-blue">
+                        <td><strong>Force Factor Quality</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.1b)</span>
+                                Bl = √(P_e × R_e × Z_mech) (at resonance)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Force Factor Optimization:</strong><br>
+                                • Higher Bl = more efficient conversion<br>
+                                • Limited by magnetic saturation<br>
+                                • Trade-off with voice coil mass<br>
+                                • Affects sensitivity and power handling
+                            </div>
+                        </td>
+                        <td>Relationship between electrical power, mechanical impedance, and electromagnetic coupling strength.</td>
+                        <td class="example">Typical Bl:<br>5-20 T·m<br>for drivers</td>
+                    </tr>
+
+                    <!-- Mechanical System -->
+                    <tr class="pale-green">
+                        <td rowspan="4" class="section-header">
+                            <strong>Mechanical System</strong><br>
+                            <small>(Pale Green)</small>
+                        </td>
+                        <td><strong>Displacement Response</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.2)</span>
+                                x(ω) = F(ω) / Z_mech(ω)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Frequency Response Shaping:</strong><br>
+                                • Below resonance: compliance controlled<br>
+                                • At resonance: resistance controlled<br>
+                                • Above resonance: mass controlled<br>
+                                • Determines driver frequency response
+                            </div>
+                        </td>
+                        <td>Diaphragm displacement as function of driving force and mechanical impedance. Determines frequency response characteristics.</td>
+                        <td class="example">Large displacement<br>at low frequencies<br>(below f_res)</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Mechanical Impedance</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.3)</span>
+                                Z_mech = R_mech + jωM + 1/(jωC)
+                            </div>
+                            <div class="ts-parameter">
+                                <strong>Thiele-Small Parameters:</strong><br>
+                                • <strong>M_ms:</strong> Moving mass (cone + voice coil)<br>
+                                • <strong>C_ms:</strong> Suspension compliance<br>
+                                • <strong>R_ms:</strong> Mechanical resistance (damping)<br>
+                                • Determines resonance and Q-factor
+                            </div>
+                        </td>
+                        <td>Complex mechanical impedance of moving system. Combines mass, compliance, and resistance effects.</td>
+                        <td class="example">At resonance:<br>Z_mech = R_mech<br>(minimum)</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Resonant Frequency</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.7)</span>
+                                f_res = f_s = 1/(2π√(M_ms × C_ms))
+                            </div>
+                            <div class="technical-note">
+                                <strong>Resonance Effects:</strong><br>
+                                • <strong>Free-air resonance (f_s):</strong> Driver alone<br>
+                                • <strong>System resonance (f_c):</strong> In enclosure<br>
+                                • Peak in impedance and response<br>
+                                • Critical for crossover design
+                            </div>
+                        </td>
+                        <td>Natural resonant frequency of mechanical system. Determines low-frequency rolloff and enclosure tuning requirements.</td>
+                        <td class="example">Woofer: 20-100Hz<br>Midrange: 100-500Hz<br>Tweeter: 500-2kHz</td>
+                    </tr>
+                    <tr class="pale-green">
+                        <td><strong>Quality Factor</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.3a)</span>
+                                Q_ms = (2πf_s × M_ms)/R_ms = √(M_ms/C_ms)/R_ms
+                            </div>
+                            <div class="technical-note">
+                                <strong>Q Factor Effects:</strong><br>
+                                • <strong>High Q (>1):</strong> Underdamped, peaky response<br>
+                                • <strong>Q ≈ 0.7:</strong> Critically damped, smooth response<br>
+                                • <strong>Low Q (<0.5):</strong> Overdamped, rolled-off response<br>
+                                • Controls transient response
+                            </div>
+                        </td>
+                        <td>Mechanical quality factor determining resonance sharpness and damping characteristics.</td>
+                        <td class="example">Typical Q_ms:<br>1-10<br>for drivers</td>
+                    </tr>
+
+                    <!-- Acoustic Radiation -->
+                    <tr class="pale-pink">
+                        <td rowspan="4" class="section-header">
+                            <strong>Acoustic Radiation</strong><br>
+                            <small>(Pale Pink)</small>
+                        </td>
+                        <td><strong>Volume Velocity</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.4)</span>
+                                U = v × S_d
+                            </div>
+                            <div class="technical-note">
+                                <strong>Effective Radiating Area:</strong><br>
+                                • <strong>S_d:</strong> Effective diaphragm area<br>
+                                • Usually less than physical area<br>
+                                • Accounts for surround and suspension<br>
+                                • Critical for acoustic output calculation
+                            </div>
+                        </td>
+                        <td>Volume velocity of acoustic radiation from diaphragm. Links mechanical motion to acoustic output.</td>
+                        <td class="example">v=1mm/s<br>S_d=100cm²<br>U=10mm³/s</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Point Source Pressure</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.5)</span>
+                                p = ρcU/(4πr²) × jωr/c (far-field)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Radiation Characteristics:</strong><br>
+                                • <strong>Near-field (r < λ/2π):</strong> Reactive components<br>
+                                • <strong>Far-field (r > λ/2π):</strong> Real radiation<br>
+                                • <strong>Directivity:</strong> Frequency dependent<br>
+                                • Pressure ∝ 1/r in far-field
+                            </div>
+                        </td>
+                        <td>Sound pressure at distance from point source approximation. Valid for compact sources in far-field.</td>
+                        <td class="example">Pressure drops<br>6dB per<br>distance doubling</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Acoustic Power</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.5a)</span>
+                                P_acoustic = Re[p × U*]/2 = ρcU²/(4πr²) × (ωr/c)²
+                            </div>
+                            <div class="technical-note">
+                                <strong>Power Radiation:</strong><br>
+                                • <strong>Low frequency:</strong> P ∝ ω⁴ (mass law)<br>
+                                • <strong>High frequency:</strong> P ∝ U² (area law)<br>
+                                • <strong>Radiation resistance:</strong> R_r = P_acoustic/U²<br>
+                                • Fundamental efficiency limitation
+                            </div>
+                        </td>
+                        <td>Acoustic power radiated by source. Determines acoustic efficiency and frequency response shape.</td>
+                        <td class="example">Low freq: very<br>inefficient<br>(ω⁴ law)</td>
+                    </tr>
+                    <tr class="pale-pink">
+                        <td><strong>Sensitivity</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.5b)</span>
+                                SPL = 20log₁₀(p/p_ref) = Sensitivity + 10log₁₀(P_e) - 20log₁₀(r)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Sensitivity Specification:</strong><br>
+                                • Measured at 1m with 1W input<br>
+                                • Typical range: 80-110 dB SPL/W/m<br>
+                                • Higher sensitivity = more efficient<br>
+                                • Trade-off with bandwidth and size
+                            </div>
+                        </td>
+                        <td>Sound pressure level produced by given electrical power at specified distance. Key specification for loudspeaker efficiency.</td>
+                        <td class="example">Typical sensitivity:<br>85-95 dB SPL<br>@ 1W/1m</td>
+                    </tr>
+
+                    <!-- Efficiency and Performance -->
+                    <tr class="pale-teal">
+                        <td rowspan="3" class="section-header">
+                            <strong>Efficiency & Performance</strong><br>
+                            <small>(Pale Teal)</small>
+                        </td>
+                        <td><strong>Electroacoustic Efficiency</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.6)</span>
+                                η = P_acoustic/P_electric
+                            </div>
+                            <div class="technical-note">
+                                <strong>Efficiency Factors:</strong><br>
+                                • <strong>Electromagnetic:</strong> Bl²/(R_e × Z_mech)<br>
+                                • <strong>Mechano-acoustic:</strong> R_radiation/Z_mech<br>
+                                • <strong>Overall:</strong> Product of all conversions<br>
+                                • Typically 0.1-10% for direct radiators
+                            </div>
+                        </td>
+                        <td>Ratio of useful acoustic power output to electrical power input. Fundamental measure of loudspeaker efficiency.</td>
+                        <td class="example">Typical η:<br>0.5-5%<br>Most energy → heat</td>
+                    </tr>
+                    <tr class="pale-teal">
+                        <td><strong>Maximum SPL</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.6a)</span>
+                                SPL_max = Sensitivity + 10log₁₀(P_max) - 20log₁₀(r)
+                            </div>
+                            <div class="technical-note">
+                                <strong>Power Limitations:</strong><br>
+                                • <strong>Thermal:</strong> Voice coil heating (RMS power)<br>
+                                • <strong>Mechanical:</strong> Excursion limits (peak power)<br>
+                                • <strong>Magnetic:</strong> Nonlinearity and distortion<br>
+                                • Frequency dependent limitations
+                            </div>
+                        </td>
+                        <td>Maximum sound pressure level achievable before damage or excessive distortion. Limited by thermal and mechanical constraints.</td>
+                        <td class="example">Professional drivers:<br>130+ dB SPL<br>@ 1m possible</td>
+                    </tr>
+                    <tr class="pale-teal">
+                        <td><strong>Frequency Response</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.6b)</span>
+                                H(ω) = [Bl/(R_e + jωL_e)] × [jω/(Z_mech)] × [Z_radiation]
+                            </div>
+                            <div class="technical-note">
+                                <strong>Response Shaping:</strong><br>
+                                • <strong>Electrical:</strong> Voice coil inductance rolloff<br>
+                                • <strong>Mechanical:</strong> Resonance and mass control<br>
+                                • <strong>Acoustic:</strong> Radiation characteristics<br>
+                                • <strong>Enclosure:</strong> Loading and resonances
+                            </div>
+                        </td>
+                        <td>Complete electroacoustic transfer function from electrical input to acoustic output. Combines all system elements.</td>
+                        <td class="example">Flat response<br>requires careful<br>system design</td>
+                    </tr>
+
+                    <!-- Thiele-Small Parameters -->
+                    <tr class="pale-orange">
+                        <td rowspan="4" class="section-header">
+                            <strong>Thiele-Small Parameters</strong><br>
+                            <small>(Pale Orange)</small>
+                        </td>
+                        <td><strong>Electrical Q</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.8)</span>
+                                Q_es = (2πf_s × M_ms × R_e)/(Bl)²
+                            </div>
+                            <div class="ts-parameter">
+                                <strong>Q_es Significance:</strong><br>
+                                • Electrical damping at resonance<br>
+                                • Lower Q_es = more electromagnetic damping<br>
+                                • Affects system Q and enclosure design<br>
+                                • Typical range: 0.2-1.0
+                            </div>
+                        </td>
+                        <td>Electrical quality factor representing electromagnetic damping. Determines electrical contribution to total system damping.</td>
+                        <td class="example">Lower Q_es:<br>tighter bass<br>response</td>
+                    </tr>
+                    <tr class="pale-orange">
+                        <td><strong>Total Q</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.9)</span>
+                                Q_ts = (Q_ms × Q_es)/(Q_ms + Q_es)
+                            </div>
+                            <div class="ts-parameter">
+                                <strong>Q_ts Applications:</strong><br>
+                                • Determines enclosure suitability<br>
+                                • <strong>Q_ts < 0.4:</strong> Sealed box<br>
+                                • <strong>Q_ts > 0.4:</strong> Ported box<br>
+                                • Controls transient response
+                            </div>
+                        </td>
+                        <td>Total system Q-factor combining mechanical and electrical damping. Critical parameter for enclosure design selection.</td>
+                        <td class="example">Q_ts = 0.3-0.7<br>for most<br>applications</td>
+                    </tr>
+                    <tr class="pale-orange">
+                        <td><strong>Equivalent Volume</strong></td>
+                        <td>
+                            <div class="equation">
+                                <span class="equation-number">(6.10)</span>
+                                V_as = ρc² × S_d² × C_ms
+                            </div>
+                            <div class="ts-parameter">
+                                <strong>V_as Interpretation:</strong><br>
+                                • Volume of air with same compliance as suspension<br>
+                                • Determines required enclosure size<br>
+                                • Larger V_as = stiffer suspension<br>
+                                • Scaled with driver size and compliance
+                            </div>
+                        </td>
+                        <td>Equivalent air compliance volume. Represents suspension stiffness and determines minimum enclosure size requirements.</td>
+                        <td class="example">Typical V_as:<br>10-200L
